@@ -57,7 +57,9 @@
     --chart-5: 340 75% 55%;
   }
 }
-
+.font-sarina {
+  font-family: var(--font-sarina), cursive;
+}
 @layer base {
   * {
     @apply border-border;
