@@ -3,18 +3,12 @@
 import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Loader2, ArrowRight } from "lucide-react";
 
 export function LoginForm({
   className,
@@ -38,73 +32,107 @@ export function LoginForm({
         password,
       });
       if (error) throw error;
-      // Update this route to redirect to an authenticated route. The user already has an active session.
-      router.push("/protected");
+      
+      router.push("/dashboard"); // Redirection vers le dashboard
+      router.refresh();
     } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "An error occurred");
+      setError(
+        error instanceof Error 
+          ? "Identifiants invalides. Veuillez réessayer." 
+          : "Une erreur est survenue."
+      );
     } finally {
       setIsLoading(false);
     }
   };
 
+  // Style partagé pour les inputs "Minimal Flat"
+  const minimalInput = "rounded-none border-0 border-b border-gray-200 focus-visible:ring-0 focus-visible:border-gray-900 px-0 h-12 text-base transition-colors bg-transparent shadow-none";
+
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
-          <CardDescription>
-            Enter your email below to login to your account
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleLogin}>
-            <div className="flex flex-col gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
-                  <Link
-                    href="/auth/forgot-password"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </Link>
-                </div>
-                <Input
-                  id="password"
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? "Logging in..." : "Login"}
-              </Button>
-            </div>
-            <div className="mt-4 text-center text-sm">
-              Don&apos;t have an account?{" "}
-              <Link
-                href="/auth/sign-up"
-                className="underline underline-offset-4"
+    <div className={cn("w-full max-w-sm mx-auto", className)} {...props}>
+      <form onSubmit={handleLogin} className="space-y-10">
+        <div className="space-y-8">
+          
+          {/* EMAIL */}
+          <div className="grid gap-2 text-left">
+            <Label 
+              htmlFor="email" 
+              className="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400"
+            >
+              Adresse e-mail
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="votre@email.com"
+              required
+              className={minimalInput}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          {/* MOT DE PASSE */}
+          <div className="grid gap-2 text-left">
+            <div className="flex items-center justify-between">
+              <Label 
+                htmlFor="password" 
+                className="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400"
               >
-                Sign up
+                Mot de passe
+              </Label>
+              <Link
+                href="/auth/forgot-password"
+                className="text-[10px] uppercase tracking-widest text-gray-300 hover:text-gray-900 transition-colors"
+              >
+                Oublié ?
               </Link>
             </div>
-          </form>
-        </CardContent>
-      </Card>
+            <Input
+              id="password"
+              type="password"
+              required
+              className={minimalInput}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+        </div>
+
+        {/* ERREUR */}
+        {error && (
+          <p className="text-[10px] font-bold text-rose-500 uppercase tracking-widest animate-in fade-in slide-in-from-top-1">
+            {error}
+          </p>
+        )}
+
+        {/* ACTIONS */}
+        <div className="pt-4 space-y-8">
+          <Button 
+            type="submit" 
+            className="w-full h-16 rounded-none bg-gray-900 hover:bg-black text-white uppercase text-[10px] tracking-[0.4em] font-bold transition-all" 
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <Loader2 className="h-4 w-4 animate-spin text-white" />
+            ) : (
+              <span className="flex items-center gap-3">
+                Se connecter <ArrowRight className="h-4 w-4" />
+              </span>
+            )}
+          </Button>
+
+          <div className="text-center">
+            <Link 
+              href="/auth/sign-up" 
+              className="text-[10px] uppercase tracking-widest font-bold text-gray-400 hover:text-gray-900 transition-colors border-b border-transparent hover:border-gray-900 pb-2"
+            >
+              Créer un compte partenaire
+            </Link>
+          </div>
+        </div>
+      </form>
     </div>
   );
 }

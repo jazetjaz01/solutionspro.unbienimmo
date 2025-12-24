@@ -1,107 +1,137 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { CircleCheck } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 
 const plans = [
   {
     name: "Essentiel",
     price: 49,
-    description:
-      "Abonnement mensuel ",
+    description: "Abonnement mensuel sans engagement",
     features: [
-      "Publication  jusqu'a 5 annonces",
-      "Diffusion des annonces sans passerelle",
-      "Demande avis de valeurs transmises",
-      "Demande de mise en contact vente",
-      "Demande de mise en contact location",
+      "Jusqu'à 5 annonces",
+      "Diffusion sans passerelle",
+      "Avis de valeurs transmis",
+      "Mise en contact vente",
+      "Mise en contact location",
     ],
-    buttonText: "Je souhaite souscrire à cette offre",
+    buttonText: "Choisir l'offre",
   },
   {
     name: "Professionnel",
     price: 99,
-    isRecommended: true,
-    description:
-      "Abonnement mensuel",
-    features: [
-      "Publication  jusqu'a 20 annonces",
-      "Diffusion des annonces sans passerelle",
-      "Demande avis de valeurs transmises",
-      "Demande de mise en contact vente",
-      "Demande de mise en contact location",
-    ],
-    buttonText: "Je souhaite souscrire à cette offre",
     isPopular: true,
+    description: "La solution idéale pour les agences",
+    features: [
+      "Jusqu'à 20 annonces",
+      "Diffusion sans passerelle",
+      "Avis de valeurs transmis",
+      "Mise en contact vente",
+      "Mise en contact location",
+    ],
+    buttonText: "Souscrire",
   },
   {
     name: "Expert",
     price: 190,
-    description:
-      "Abonnement mensuel",
+    description: "Pour un volume d'activité important",
     features: [
-      "Publication  jusqu'a 50 annonces",
-      "Diffusion des annonces sans passerelle",
-      "Demande avis de valeurs transmises",
-      "Demande de mise en contact vente",
-      "Demande de mise en contact location",
+      "Jusqu'à 50 annonces",
+      "Diffusion sans passerelle",
+      "Avis de valeurs transmis",
+      "Mise en contact vente",
+      "Mise en contact location",
     ],
-   buttonText: "Je souhaite souscrire à cette offre",
+    buttonText: "Choisir l'offre",
   },
 ];
 
 const Pricing = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center py-12 px-6 max-w-5xl">
-      <h2 className="text-5xl font-semibold text-center tracking-[-0.03em]">
-        Nos offres 
-      </h2>
-      <p className="mt-3 text-lg text-center ">
-        Vous trouverez ci-dessous nos offres commerciales à destination des agences immobilières, notaires, syndics et promoteurs.
-        Il n'y a pas d'obligation de durée minimale lors de la souscription d'un de nos abonnements. Vous pouvez rompre sans préavis et sans justification votre abonnement. 
-      </p>
+    <div className="min-h-screen bg-white flex flex-col items-center py-24 px-6 font-sans">
+      
+      {/* HEADER SECTION */}
+      <div className="max-w-3xl mb-24 text-center space-y-8">
+        <p className="text-[10px] tracking-[0.4em] uppercase font-bold text-gray-400">Tarification</p>
+        <h2 className="text-5xl md:text-6xl font-light tracking-tight text-gray-900 italic">
+          Nos offres commerciales
+        </h2>
+        <div className="w-12 h-px bg-gray-900 mx-auto" />
+        <p className="text-lg font-light text-gray-500 leading-relaxed italic">
+          "Une liberté totale : pas d'engagement de durée, rupture possible sans préavis ni justification."
+        </p>
+      </div>
 
-      <div className="mt-12 sm:mt-16 max-w-(--breakpoint-lg) mx-auto grid grid-cols-1 lg:grid-cols-3 items-center gap-10 lg:gap-0">
+      {/* PRICING GRID */}
+      <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-3 border border-gray-100">
         {plans.map((plan) => (
           <div
             key={plan.name}
             className={cn(
-              "relative border p-7 rounded-xl lg:rounded-none lg:first:rounded-l-xl lg:last:rounded-r-xl",
-              {
-                "border-2 border-primary py-12 rounded-xl!": plan.isPopular,
-              }
+              "relative p-12 flex flex-col transition-all duration-500",
+              plan.isPopular 
+                ? "bg-gray-900 text-white lg:scale-105 z-10 shadow-[0_0_80px_rgba(0,0,0,0.1)]" 
+                : "bg-white text-gray-900 border-r border-gray-100 last:border-r-0"
             )}
           >
             {plan.isPopular && (
-              <Badge className="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/2">
-                Le plus populaire
-              </Badge>
+              <span className="absolute top-0 left-0 w-full text-center -translate-y-1/2">
+                <span className="bg-white text-gray-900 text-[9px] font-bold uppercase tracking-[0.3em] px-4 py-1 border border-gray-900">
+                  Recommandé
+                </span>
+              </span>
             )}
-            <h3 className="text-lg font-medium">{plan.name}</h3>
-            <p className="mt-2 text-4xl font-semibold">€{plan.price} ht</p>
-            <p className="mt-4 text-sm text-muted-foreground">
+
+            <h3 className={cn(
+              "text-[10px] uppercase tracking-[0.4em] font-bold mb-8",
+              plan.isPopular ? "text-gray-400" : "text-gray-400"
+            )}>
+              {plan.name}
+            </h3>
+
+            <div className="flex items-baseline gap-1 mb-4">
+              <span className="text-5xl font-light tracking-tighter italic">{plan.price}€</span>
+              <span className="text-xs uppercase tracking-widest font-bold opacity-50">/ HT</span>
+            </div>
+            
+            <p className="text-xs font-medium uppercase tracking-widest opacity-60 mb-10">
               {plan.description}
             </p>
-            <Separator className="my-6" />
-            <ul className="space-y-2">
+
+            <Separator className={cn("mb-10", plan.isPopular ? "bg-white/10" : "bg-gray-100")} />
+
+            <ul className="space-y-6 flex-grow">
               {plan.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-2">
-                  <CircleCheck className="h-4 w-4 mt-1 text-green-600" />
-                  {feature}
+                <li key={feature} className="flex items-center gap-4 text-[11px] uppercase tracking-widest font-bold">
+                  <Check className={cn("h-3 w-3", plan.isPopular ? "text-white" : "text-gray-900")} />
+                  <span className={plan.isPopular ? "text-gray-300" : "text-gray-500"}>
+                    {feature}
+                  </span>
                 </li>
               ))}
             </ul>
+
             <Button
-              variant={plan.isPopular ? "default" : "outline"}
-              size="lg"
-              className="w-full mt-6"
+              variant="outline"
+              className={cn(
+                "w-full h-16 mt-12 rounded-none uppercase text-[10px] tracking-[0.3em] font-bold transition-all",
+                plan.isPopular 
+                  ? "bg-white text-gray-900 hover:bg-gray-100 border-none" 
+                  : "bg-transparent border-gray-200 hover:border-gray-900 text-gray-400 hover:text-gray-900"
+              )}
             >
-              {plan.buttonText}
+              <span className="flex items-center gap-2">
+                {plan.buttonText} <ArrowRight className="h-4 w-4" />
+              </span>
             </Button>
           </div>
         ))}
       </div>
+
+      {/* FOOTNOTE */}
+      <p className="mt-16 text-[9px] uppercase tracking-[0.4em] text-gray-300 font-bold">
+        Toutes nos offres sont soumises à la TVA en vigueur.
+      </p>
     </div>
   );
 };
