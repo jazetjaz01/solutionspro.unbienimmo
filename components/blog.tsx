@@ -59,7 +59,7 @@ const Blog = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto py-24 px-6 md:px-12 bg-white font-sans">
+    <div className="max-w-7xl mx-auto py-24 px-6 md:px-12 bg-white font-inherit">
       
       {/* HEADER DE SECTION */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 border-b border-gray-100 pb-12">
@@ -67,7 +67,7 @@ const Blog = () => {
           <p className="text-[10px] tracking-[0.4em] uppercase font-bold text-gray-400">
             Actualités
           </p>
-          <h2 className="text-4xl md:text-5xl font-light tracking-tighter text-gray-900 italic">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-[0.1em] text-gray-900 ">
             Lectures recommandées
           </h2>
         </div>

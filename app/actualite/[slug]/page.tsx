@@ -59,7 +59,7 @@ function PostContent({ params }: { params: Promise<{ slug: string }> }) {
   if (!post) return null
 
   return (
-    <article className="min-h-screen bg-white font-sans">
+    <article className="min-h-screen bg-white font-inherit">
       {/* HEADER / COVER IMAGE */}
       <div className="relative w-full h-[60vh] bg-gray-100">
         {post.image_url ? (
@@ -97,13 +97,13 @@ function PostContent({ params }: { params: Promise<{ slug: string }> }) {
           </div>
 
           {/* TITRE */}
-          <h1 className="text-4xl md:text-6xl font-light tracking-tighter text-gray-900 italic mb-12 leading-[1.1]">
+          <h1 className="text-4xl md:text-6xl font-semibold tracking-[0.2em] text-gray-900  mb-12 leading-[1.1]">
             {post.title}
           </h1>
 
           {/* CORPS DE L'ARTICLE */}
           <div className="prose prose-gray prose-lg max-w-none">
-            <div className="text-gray-700 font-light leading-relaxed whitespace-pre-wrap">
+            <div className="text-gray-900 text-justify text-xl leading-relaxed whitespace-pre-wrap">
               {post.content}
             </div>
           </div>
