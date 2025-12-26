@@ -14,7 +14,10 @@ const Navbar = () => {
       <div className="h-full flex items-center justify-between max-w-(--breakpoint-xl) mx-auto px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
             <Logo />
-            <span className="font-sarina text-lg  hidden md:block">unbienimmo</span>
+            <div className="flex gap-0.5 ">
+            <span className=" text-xl  hidden md:block text-orange-600 font-bold tracking-[0.1em]">solutionspro.</span>
+            <span className="font-sarina text-lg  hidden md:block pt-0.5">unbienimmo</span>
+            </div>
           </Link>
 
         <div className="flex items-center gap-6">
