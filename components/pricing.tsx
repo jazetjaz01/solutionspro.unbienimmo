@@ -53,8 +53,8 @@ const Pricing = () => {
       {/* HEADER SECTION */}
       <div className="max-w-3xl mb-24 text-center space-y-8">
         <p className="text-[10px] tracking-[0.4em] uppercase font-bold text-gray-400">Tarification</p>
-        <h2 className="text-5xl md:text-6xl font-light tracking-[0.1em] text-gray-900 italic">
-          Nos offres commerciales
+        <h2 className="text-5xl md:text-6xl  font-semibold tracking-[0.1em] text-gray-900 italic">
+         Diffusez vos annonces sur unbienimmo.com
         </h2>
         <div className="w-12 h-px bg-gray-900 mx-auto" />
         <p className="text-lg font-light text-gray-500 leading-relaxed italic">
