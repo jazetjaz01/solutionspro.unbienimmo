@@ -1,9 +1,9 @@
 "use client"
-export const dynamic = "force-dynamic";
-import { useEffect, useState, use } from "react"
+
+import { useEffect, useState, use, Suspense } from "react"
 import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
-import { ArrowLeft, Calendar, Clock, Loader2 } from "lucide-react"
+import { ArrowLeft, Calendar, Loader2 } from "lucide-react"
 import Link from "next/link"
 
 interface Post {
@@ -14,7 +14,8 @@ interface Post {
   slug: string;
 }
 
-export default function PostDetail({ params }: { params: Promise<{ slug: string }> }) {
+// 1. Le composant qui gère l'affichage et la récupération des données
+function PostContent({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params)
   const supabase = createClient()
   const router = useRouter()
@@ -24,19 +25,24 @@ export default function PostDetail({ params }: { params: Promise<{ slug: string 
 
   useEffect(() => {
     const fetchPost = async () => {
-      const { data, error } = await supabase
-        .from('posts')
-        .select('*')
-        .eq('slug', slug)
-        .single()
+      try {
+        const { data, error } = await supabase
+          .from('posts')
+          .select('*')
+          .eq('slug', slug)
+          .single()
 
-      if (error || !data) {
-        console.error("Article introuvable")
-        router.push('/blog') // Redirection si l'article n'existe pas
-      } else {
-        setPost(data)
+        if (error || !data) {
+          console.error("Article introuvable")
+          router.push('/actualite')
+        } else {
+          setPost(data)
+        }
+      } catch (err) {
+        console.error("Erreur serveur:", err)
+      } finally {
+        setLoading(false)
       }
-      setLoading(false)
     }
 
     fetchPost()
@@ -67,7 +73,7 @@ export default function PostDetail({ params }: { params: Promise<{ slug: string 
             Pas d'image de couverture
           </div>
         )}
-        <div className="absolute inset-0 bg-black/20" /> {/* Overlay léger */}
+        <div className="absolute inset-0 bg-black/20" />
       </div>
 
       <div className="max-w-3xl mx-auto px-6 -mt-32 relative z-10">
@@ -97,7 +103,6 @@ export default function PostDetail({ params }: { params: Promise<{ slug: string 
 
           {/* CORPS DE L'ARTICLE */}
           <div className="prose prose-gray prose-lg max-w-none">
-            {/* Si vous utilisez un éditeur riche (ex: TipTap), utilisez dangerouslySetInnerHTML */}
             <div className="text-gray-700 font-light leading-relaxed whitespace-pre-wrap">
               {post.content}
             </div>
@@ -111,5 +116,18 @@ export default function PostDetail({ params }: { params: Promise<{ slug: string 
         </div>
       </div>
     </article>
+  )
+}
+
+// 2. L'export par défaut enveloppé dans Suspense pour le build Vercel
+export default function PostDetail({ params }: { params: Promise<{ slug: string }> }) {
+  return (
+    <Suspense fallback={
+      <div className="flex h-screen items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-gray-300" />
+      </div>
+    }>
+      <PostContent params={params} />
+    </Suspense>
   )
 }
