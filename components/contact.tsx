@@ -2,7 +2,7 @@ import { MailIcon, MapPinIcon, PhoneIcon, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const Contact = () => (
-  <div className="min-h-screen bg-white font-sans selection:bg-gray-900 selection:text-white">
+  <div className="min-h-screen bg-white font-inherit selection:bg-gray-900 selection:text-white">
     <div className="max-w-7xl mx-auto px-6 md:px-12 py-24 md:py-32">
       
       {/* HEADER ÉDITORIAL */}
@@ -10,11 +10,11 @@ const Contact = () => (
         <p className="text-[10px] tracking-[0.3em] uppercase font-bold text-gray-400 mb-4">
           Nous contacter
         </p>
-        <h1 className="text-5xl md:text-7xl font-light tracking-tighter text-gray-900 italic">
+        <h1 className="text-5xl md:text-7xl font-semibold -tracking-wide text-gray-900 ">
           Parlons de votre <br /> prochain projet.
         </h1>
         <p className="mt-8 text-lg font-light text-gray-500 max-w-xl leading-relaxed">
-          Notre équipe dédiée aux professionnels de l'immobilier est à votre disposition pour toute question technique ou commerciale.
+          Notre équipe dédiée aux professionnels de l'immobilier est à votre disposition pour toutes questions techniques ou commerciales.
         </p>
       </div>
 
