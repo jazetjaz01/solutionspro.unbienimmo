@@ -23,7 +23,7 @@ export default function Hero() {
           </div>
 
           {/* TITRE ÉDITORIAL */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-[0.1em] text-gray-900 leading-[0.95] ">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-[0.1em] text-gray-900 leading-[0.95] ">
             L'immobilier <br /> en toute <br /> indépendance.
           </h1>
 
