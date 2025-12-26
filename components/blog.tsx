@@ -131,7 +131,7 @@ const Blog = () => {
 
             {/* ACTION */}
             <Link 
-              href={`/blog/${post.slug}`} 
+              href={`/actualite/${post.slug}`} 
               className="mt-8 flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400 group-hover:text-gray-900 transition-colors"
             >
               Lire la suite 
