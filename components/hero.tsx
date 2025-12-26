@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center overflow-hidden font-sans">
+    <div className="min-h-screen bg-white flex items-center justify-center overflow-hidden font-inherit">
       <div className="max-w-7xl w-full mx-auto grid lg:grid-cols-[1.2fr_0.8fr] gap-20 px-6 py-20 lg:py-0">
         
         {/* COLONNE GAUCHE : TEXTE & ACTIONS */}
@@ -23,7 +23,7 @@ export default function Hero() {
           </div>
 
           {/* TITRE ÉDITORIAL */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter text-gray-900 leading-[0.95] italic">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-[0.1em] text-gray-900 leading-[0.95] ">
             L'immobilier <br /> en toute <br /> indépendance.
           </h1>
 
