@@ -25,7 +25,7 @@ const footerSections = [
   {
     title: "Ressources",
     links: [
-      { title: "Blog Immobilier", href: "#" },
+      { title: "Actualité", href: "/actualite" },
       { title: "Guide Partenaire", href: "#" },
       { title: "Aide & Support", href: "/faq" },
       { title: "Tutoriels", href: "#" },
@@ -67,17 +67,14 @@ const Footer = () => {
         
         {/* LOGO SECTION HAUTE */}
         <div className="mb-20">
-          <Link href="/" className="inline-flex items-center gap-2 group">
+          <Link href="/" className="flex items-center gap-2">
             <Logo />
-            <div className="flex flex-col">
-              <span className="text-[10px] tracking-[0.4em] uppercase font-bold text-gray-900">
-                UnBienImmo
-              </span>
-              <span className="text-[10px] tracking-[0.2em] uppercase font-light text-gray-400">
-                Solutions Pro
-              </span>
+            <div className="flex gap-0.5 ">
+            <span className=" text-xl  hidden md:block text-orange-600 font-bold tracking-[0.1em]">solutionspro.</span>
+            <span className="font-sarina text-lg   pt-0.5">unbienimmo</span>
             </div>
           </Link>
+
         </div>
 
         {/* GRILLE DES SECTIONS */}
