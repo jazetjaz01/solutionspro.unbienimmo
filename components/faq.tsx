@@ -31,7 +31,7 @@ const faq = [
   {
     question: "Comment sont gérés les leads et les contacts ?",
     answer:
-      "Chaque demande effectuée sur l'un de vos biens vous est transmise directement et sans délai. Nous ne conservons aucune commission sur vos transactions et nous ne revendons pas vos contacts à des tiers. Vous restez le seul interlocuteur de vos clients.",
+      "Chaque demande effectuée sur l'un de vos biens vous est transmise directement et sans délai. Nous ne conservons aucune commission sur vos transactions.Vous restez le seul interlocuteur de vos clients.",
   },
 ];
 

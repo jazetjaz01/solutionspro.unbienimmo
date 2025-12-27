@@ -2,47 +2,51 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { Check, ArrowRight } from "lucide-react";
+import Link from "next/link"; // Import pour la navigation Next.js
 
 const plans = [
   {
-    name: "Essentiel",
+    name: " Pack Essentiel",
     price: 49,
+    href: "/pack/essentiel", // Lien vers la page dédiée
     description: "Abonnement mensuel sans engagement",
     features: [
       "Jusqu'à 10 annonces",
-      "Diffusion sans passerelle",
-      "Avis de valeurs transmis",
-      "Mise en contact vente",
-      "Mise en contact location",
+      "Diffusion annonces sans passerelle",
+      "Espace client multi-utilisateurs ",
+      "Annonces géolocalisées",
+      "Engagement durée minimum 1 mois",
     ],
-    buttonText: "Choisir l'offre",
+    buttonText: "Découvrir l'offre",
   },
   {
-    name: "Professionnel",
+    name: "Pack Professionnel",
     price: 99,
+    href: "/pack/professionnel",
     isPopular: true,
     description: "La solution idéale pour les agences",
     features: [
       "Jusqu'à 25 annonces",
-      "Diffusion sans passerelle",
-      "Avis de valeurs transmis",
-      "Mise en contact vente",
-      "Mise en contact location",
+     "Diffusion annonces sans passerelle",
+      "Espace client multi-utilisateurs ",
+      "Annonces géolocalisées",
+      "Engagement durée minimum 1 mois",
     ],
-    buttonText: "Souscrire",
+    buttonText: "Découvrir l'offre",
   },
   {
-    name: "Expert",
+    name: "Pack Expert",
     price: 199,
+    href: "/pack/expert",
     description: "Pour un volume d'activité important",
     features: [
       "Jusqu'à 50 annonces",
-      "Diffusion sans passerelle",
-      "Avis de valeurs transmis",
-      "Mise en contact vente",
-      "Mise en contact location",
+      "Diffusion annonces sans passerelle",
+      "Espace client multi-utilisateurs ",
+      "Annonces géolocalisées",
+      "Engagement durée minimum 1 mois",
     ],
-    buttonText: "Choisir l'offre",
+    buttonText: "Découvrir l'offre",
   },
 ];
 
@@ -53,7 +57,7 @@ const Pricing = () => {
       {/* HEADER SECTION */}
       <div className="max-w-3xl mb-24 text-center space-y-8">
         <p className="text-[10px] tracking-[0.4em] uppercase font-bold text-gray-400">Tarification</p>
-        <h2 className="text-4xl md:text-6xl  font-semibold tracking-[0.1em] text-gray-900 ">
+        <h2 className="text-4xl md:text-6xl font-semibold tracking-[0.1em] text-gray-900">
          Diffusez vos annonces sur unbienimmo.com
         </h2>
         <div className="w-12 h-px bg-gray-900 mx-auto" />
@@ -90,11 +94,11 @@ const Pricing = () => {
             </h3>
 
             <div className="flex items-baseline gap-1 mb-4">
-              <span className="text-5xl font-semibold text-orange-600 tracking-[0.2em] italic">{plan.price}€</span>
+              <span className="text-5xl font-bold text-orange-600 tracking-[0.2em] ">{plan.price}€</span>
               <span className="text-xs uppercase tracking-widest font-bold ">/ HT</span>
             </div>
             
-            <p className="text-xs font-medium uppercase tracking-widest  mb-10">
+            <p className="text-xs font-medium uppercase tracking-widest mb-10">
               {plan.description}
             </p>
 
@@ -111,19 +115,22 @@ const Pricing = () => {
               ))}
             </ul>
 
-            <Button
-              variant="outline"
-              className={cn(
-                "w-full h-16 mt-12 rounded-none uppercase text-[10px] tracking-[0.3em] font-bold transition-all",
-                plan.isPopular 
-                  ? "bg-white text-gray-900 hover:bg-gray-100 border-none" 
-                  : "bg-transparent border-gray-200 hover:border-gray-900 text-gray-400 hover:text-gray-900"
-              )}
-            >
-              <span className="flex items-center gap-2">
-                {plan.buttonText} <ArrowRight className="h-4 w-4" />
-              </span>
-            </Button>
+            {/* BOUTON AVEC LIEN */}
+            <Link href={plan.href} className="w-full mt-12">
+              <Button
+                variant="outline"
+                className={cn(
+                  "w-full h-16 rounded-none uppercase text-[10px] tracking-[0.3em] font-bold transition-all",
+                  plan.isPopular 
+                    ? "bg-white text-gray-900 hover:bg-gray-100 border-none" 
+                    : "bg-transparent border-gray-200 hover:border-gray-900 text-gray-400 hover:text-gray-900"
+                )}
+              >
+                <span className="flex items-center gap-2">
+                  {plan.buttonText} <ArrowRight className="h-4 w-4" />
+                </span>
+              </Button>
+            </Link>
           </div>
         ))}
       </div>
