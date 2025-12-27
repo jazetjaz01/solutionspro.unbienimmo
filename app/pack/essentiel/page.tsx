@@ -112,7 +112,7 @@ const EssentielPage = () => {
       {/* FOOTER / CGV */}
       <footer className="w-full py-12 border-t border-gray-100 bg-gray-50/50 flex flex-col items-center space-y-4">
         <p className="text-[9px] uppercase tracking-[0.4em] text-gray-400 font-bold">
-          © {new Date().getFullYear()} unbienimmo.com - Tous droits réservés
+         © 2026 unbienimmo.com 
         </p>
         <Link 
           href="/cgv" 
