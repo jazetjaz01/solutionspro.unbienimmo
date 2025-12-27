@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 const PRICE_IDS: Record<string, string | undefined> = {
   essentiel: process.env.STRIPE_PRICE_ID_ESSENTIEL,
-  professionnel: process.env.STRIPE_PRICE_ID_PRO,
+  professionnel: process.env.STRIPE_PRICE_ID_PRO, // Assurez-vous que c'est bien 'professionnel'
   expert: process.env.STRIPE_PRICE_ID_EXPERT,
 };
 
