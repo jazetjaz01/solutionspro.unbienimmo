@@ -35,11 +35,12 @@ export async function middleware(request: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser();
 
   // 4. Protection de la route /app (Dashboard)
-  if (request.next_url.pathname.startsWith("/app") && !user) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/auth/login";
-    return NextResponse.redirect(url);
-  }
+  // ✅ Correction de next_url en nextUrl
+if (request.nextUrl.pathname.startsWith("/app") && !user) {
+  const url = request.nextUrl.clone();
+  url.pathname = "/auth/login";
+  return NextResponse.redirect(url);
+}
 
   return supabaseResponse;
 }
