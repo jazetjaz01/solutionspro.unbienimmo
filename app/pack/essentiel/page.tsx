@@ -74,7 +74,7 @@ const EssentielPage = () => {
           </ul>
 
           {/* BOUTON D'ACTION */}
-          <Link href="/souscrire-essentiel" className="w-full">
+          <Link href="/souscription" className="w-full">
             <Button
               className="w-full h-20 rounded-none uppercase text-[12px] tracking-[0.4em] font-bold bg-gray-900 text-white hover:bg-orange-600 transition-all duration-300 group"
             >

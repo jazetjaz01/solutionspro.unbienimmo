@@ -9,7 +9,7 @@ const plans = [
     name: " Pack Essentiel",
     price: 49,
     href: "/pack/essentiel", // Lien vers la page dédiée
-    description: "Abonnement mensuel sans engagement",
+    description: "Offre découverte ",
     features: [
       "Jusqu'à 10 annonces",
       "Diffusion annonces sans passerelle",
